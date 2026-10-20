@@ -1,6 +1,7 @@
 import http from 'k6/http'
 import { sleep, check } from 'k6'
 const postLogin = JSON.parse(open('../fixtures/postLogin.json'))
+import { pegarBaseURL } from '../utils/variaveis.js';
 
 export const options = {    //configuracoes de como o teste vai ser
     stages: [
@@ -15,7 +16,7 @@ export const options = {    //configuracoes de como o teste vai ser
 }
 
 export default function () {    //aqui será descrito o teste realmente
-    const url = 'http://localhost:3000/login';
+    const url = pegarBaseURL() + '/login';
 
     postLogin.username = "junior.lima"
     const payload = JSON.stringify(postLogin)
